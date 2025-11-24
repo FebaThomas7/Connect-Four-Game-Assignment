@@ -46,6 +46,16 @@ def check_win(piece):
 
     return False
 
+# Ask for player names
+player1_name = input("Enter Player 1's name: ")
+player2_name = input("Enter Player 2's name: ")
+
+# Hard assigning symbols to players
+players = { "X": player1_name, "O": player2_name }
+
+# Initialize list to store game moves for export
+game_moves = []  
+
 # main game loop
 player = "X"
 print("Connect Four Game")
@@ -54,7 +64,7 @@ print_board()
 while True:
     try:
 
-        col = int(input(f"Player {player}, choose a column (1-7): ")) - 1
+        col = int(input(f"{players[player]} ({player}), choose a column (1-7): ")) - 1
 
         # Correctness check using assert
         assert 0 <= col <= 6, "Column number must be between 1 and 7"
@@ -71,13 +81,24 @@ while True:
         print("Column is full. Try another one.")
         continue
 
+    # store move
+    game_moves.append((players[player], player, col+1))  
+
     print_board()
     
     # win checking
     if check_win(player):
-        print(f"Player {player} wins")
+        print(f"{players[player]} ({player}) wins")
+
+        # export game moves to a file
+        with open("game_log.txt", "w") as f:
+            f.write("Game Moves Log\n")
+            f.write("---------------------------\n")
+            for i, move in enumerate(game_moves, start=1):
+                f.write(f"Move {i}: {move[0]} ({move[1]}) -> Column {move[2]}\n")
+            f.write(f"\nWinner: {players[player]} ({player})\n")
+        print("Game data saved to game_log.txt")
         break
 
     # switch player
     player = "O" if player == "X" else "X"
-

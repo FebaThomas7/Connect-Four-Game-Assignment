@@ -9,13 +9,10 @@ assert len(board[0]) == 7, "Board must have 7 columns"
 def print_board():
     for row in board:
         print("| " + " | ".join(row) + " |")
-    print("  0   1   2   3   4   5   6")
+    print("  1   2   3   4   5   6   7") 
 
 # dropping a piece
 def drop_piece(col, piece):
-    #  Checking if the column is valid
-    assert 0 <= col <= 6, "Column number must be between 0 and 6"
-
     for row in range(5, -1, -1): 
         if board[row][col] == " ":
             board[row][col] = piece
@@ -36,6 +33,17 @@ def check_win(piece):
             if board[r][c] == piece and board[r+1][c] == piece and board[r+2][c] == piece and board[r+3][c] == piece:
                 return True
 
+    # diagonal
+    for r in range(3):
+        for c in range(4):
+            if board[r][c] == piece and board[r+1][c+1] == piece and board[r+2][c+2] == piece and board[r+3][c+3] == piece:
+                return True
+
+    for r in range(3, 6):
+        for c in range(4):
+            if board[r][c] == piece and board[r-1][c+1] == piece and board[r-2][c+2] == piece and board[r-3][c+3] == piece:
+                return True
+
     return False
 
 # main game loop
@@ -45,22 +53,26 @@ print_board()
 
 while True:
     try:
-        col = int(input(f"Player {player}, choose a column 0-6: "))
-    except:
-        print("ERROR: Please enter a number.")
-        continue
-    #Checking if column is out of range 
-    if col < 0 or col > 6:
-        print("ERROR: Column out of range.")
-        continue
 
+        col = int(input(f"Player {player}, choose a column (1-7): ")) - 1
+
+        # Correctness check using assert
+        assert 0 <= col <= 6, "Column number must be between 1 and 7"
+
+    except ValueError:
+        print("Please enter a valid number.")
+        continue
+    except AssertionError as e:
+        print(e)
+        continue
+        
     # trying to drop piece
     if not drop_piece(col, player):
-        print("ERROR: Column is full.")
+        print("Column is full. Try another one.")
         continue
 
     print_board()
-
+    
     # win checking
     if check_win(player):
         print(f"Player {player} wins")
@@ -68,3 +80,4 @@ while True:
 
     # switch player
     player = "O" if player == "X" else "X"
+

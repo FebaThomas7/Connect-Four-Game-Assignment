@@ -1,4 +1,9 @@
+# making an empty board (6 rows, 7 columns)
 board = [[" " for _ in range(7)] for _ in range(6)]
+
+# simple check for board size
+assert len(board) == 6, "Board must have 6 rows"
+assert len(board[0]) == 7, "Board must have 7 columns"
 
 # printing the board
 def print_board():
@@ -8,13 +13,16 @@ def print_board():
 
 # dropping a piece
 def drop_piece(col, piece):
-    for row in range(5, -1, -1):  # start from bottom row
+    #  Checking if the column is valid
+    assert 0 <= col <= 6, "Column number must be between 0 and 6"
+
+    for row in range(5, -1, -1): 
         if board[row][col] == " ":
             board[row][col] = piece
             return True
-    return False  
+    return False 
 
-# checking for a win 
+# Checking for a win 
 def check_win(piece):
     # horizontal
     for r in range(6):
@@ -32,28 +40,30 @@ def check_win(piece):
 
 # main game loop
 player = "X"
-print("Connect Four Game!")
+print("Connect Four Game")
 print_board()
 
 while True:
     try:
-        col = int(input(f"Player {player}, choose a column (0-6): "))
+        col = int(input(f"Player {player}, choose a column 0-6: "))
     except:
-        print("Please enter a number.")
+        print("ERROR: Please enter a number.")
         continue
-
+    #Checking if column is out of range 
     if col < 0 or col > 6:
-        print("Invalid column.")
+        print("ERROR: Column out of range.")
         continue
 
+    # trying to drop piece
     if not drop_piece(col, player):
-        print("Column is full. Try another one.")
+        print("ERROR: Column is full.")
         continue
 
     print_board()
 
+    # win checking
     if check_win(player):
-        print(f"Player {player} wins!")
+        print(f"Player {player} wins")
         break
 
     # switch player

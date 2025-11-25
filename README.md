@@ -8,7 +8,7 @@ Student Name: Feba Rachel Thomas
 
 # Project Description
 
-A text based Connect Four game in Python, featuring both Human vs Human and Human vs AI (plAIer) modes. The game demonstrates Python fundamentals, structured programming, input validation, logging, and simple AI integration.
+A text and GUI based Connect Four game in Python, featuring both Human vs Human and Human vs AI (plAIer) modes. The game demonstrates Python fundamentals, structured programming, input validation, logging, and simple AI integration.
 
 # Features
 
@@ -28,7 +28,9 @@ A text based Connect Four game in Python, featuring both Human vs Human and Huma
 
 # Advance Features
 
-1) Human vs Human and Human vs AI modes.
+1) User friendly GUI
+   
+3) Human vs Human and Human vs AI modes.
 
 ## Medium-level heuristic AI:
 

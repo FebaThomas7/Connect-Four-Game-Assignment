@@ -6,93 +6,72 @@ Student Number: 3521404
 
 Student Name: Feba Rachel Thomas
 
-# Introduction
+# Project Description
 
-This repository contains a fully functional text-based Connect Four game written in Python. The game allows two players to take turns dropping pieces into a 6×7 grid. The project demonstrates Python fundamentals, game logic, input validation, and file handling.
+A text based Connect Four game in Python, featuring both Human vs Human and Human vs AI (plAIer) modes. The game demonstrates Python fundamentals, structured programming, input validation, logging, and simple AI integration.
 
-# Current Goal
+# Features
 
-The aim of this project is to build an intermediate-level version of Connect Four that:
+1) Runs entirely in the terminal
 
-* Runs entirely in the terminal
+2) Full input validation:
 
-* Uses clean and readable Python code
+* Handles non-numeric input.
 
-* Includes strong input validation
+* Validates column selection (1–7).
 
-* Correctly checks for horizontal, vertical, and diagonal wins
+* Detects full columns.
 
-* Saves all moves and the winner to a game_log.txt file
+3) Win detection in all directions: horizontal, vertical, and diagonal.
 
-# Stages of the Project
+4) Moves are logged using a decorator and saved to game_log.txt.
 
-1. Understanding the Game Rules
+# Advance Features
 
-* The game is played on a 6×7 grid.
+1) Human vs Human and Human vs AI modes.
 
-* Two players take turns dropping pieces into a column.
+## Medium-level heuristic AI:
 
-* A player wins by connecting four pieces horizontally, vertically, or diagonally.
+* Checks for winning moves.
 
-* If a column is full, the player must choose a different column.
+* Blocks the player’s potential wins.
 
-2. Setting Up the Project
+* Chooses random columns otherwise.
 
-* Created a project folder.
 
-* Added the main Python file: game.py.
+# Implementation
 
-3. Features Implemented
-   
-* Board Setup
+1) Board Setup
 
-* A 6×7 grid created using Python lists.
+* 6×7 grid using Python lists.
 
-* Function to print the board neatly in the terminal.
+* Neatly printed in the terminal.
 
- User Input & Validation
+2) User Input & Validation
 
 * Players enter their names.
 
-* Symbols assigned: Player 1 → X, Player 2 → O.
+* Player symbols: X → Player 1, O → Player 2 / plAIer.
 
- Input validation using:
+* Input validated using try/except and assert.
 
-* try/except for handling non-numeric input
+3) Gameplay Mechanics
 
-* assert to check valid column range
-
-* Full-column detection
-
-Gameplay Mechanics
-
-* Function to drop a piece into a valid column.
+* Drop pieces into chosen columns.
 
 * Automatic turn switching between players.
 
-* Every move stored in a list for logging.
+* Store every move for logging.
 
-Win Detection
+4) Win Detection
 
-Implemented for all directions:
+* Checks horizontal, vertical, and diagonal connections.
 
-* Horizontal
+5) Game Log Export
 
-* Vertical
+* Moves logged with move number, player name, symbol, and column chosen.
 
-* Diagonal
-
-Game Log Export
-
-At the end of the game, all moves are written to game_log.txt, including:
-
-* Move number
-
-* Player name and symbol
-
-* Column chosen
-
-* Winner
+* Winner recorded at the end in game_log.txt.
 
 # Project Structure
 Connect-Four-Game-Assignment
@@ -115,4 +94,4 @@ Connect-Four-Game-Assignment
 
 # Conclusion
 
-This project demonstrates the full implementation of a classic Connect Four game using Python. It includes clean game logic, player input handling, win checking, and log file generation. It serves as a strong example of structured programming and Python fundamentals.
+This project demonstrates the full implementation of a classic Connect Four game using Python with both Human vs Human and Human vs AI modes. It includes clean game logic, Input validation and error handling, Medium level AI heuristic, Logging moves and game result.
